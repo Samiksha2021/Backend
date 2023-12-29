@@ -68,7 +68,7 @@
 //         console.log("server running on port no 3001");
 //      })
 
-     /****************************************query parameter************************************************* */
+/****************************************query parameter************************************************* */
 //      let express=  require('express')
 //  let app=      express()
 //  app.get('/search',(req,res)=>{
@@ -86,12 +86,12 @@
 // ejs is the templating library
 // let express=  require('express')
 //  let app=   express()
- 
+
 // app.set('view engine' ,'ejs')
 
 // app.get('/',(req,res)=>{
 //     let random=  Math.random()*100
-//     res.render('index',{random})
+//     res.render('first',{random})
 //  })
 // let todo =['gym','cat','dog']
 //  app.get('/home',(req,res)=>{
@@ -106,31 +106,99 @@
 // iska reverse bhi ho skta h but ye secure ni hota h
 
 /*******************************************form (get vs post)*************************************/
-let express=  require('express')
- let app=   express()
- 
-app.set('view engine' ,'ejs')
+// let express=  require('express')
+//  let app=   express()
 
-app.get('/',(req,res)=>{
-    res.render('form')
+// app.set('view engine' ,'ejs')
+
+// app.get('/',(req,res)=>{
+//     res.render('form')
+// })
+
+// app.get('/user',(req,res)=>{
+//     let{userName,number}=req.query
+//     // console.log(req.query,"rrrr");
+//     // res.send("Form submitted!!!")
+//     res.send(` ${userName} ${number}`)
+// })
+
+// app.post('/user',(req,res)=>{
+//     res.send("Form submitted!!!")
+// })
+
+// app.listen(3001,()=>{
+//     console.log("server running on port no 3001");
+// })
+
+/********************************************Restful api****************************************************8 */
+
+
+let express = require('express')
+let app = express()
+app.use(express.urlencoded({ extended: true }));
+
+app.set('view engine', 'ejs')
+
+let arr = [
+  {
+    id: 0,
+    userName: "chetan",
+    comment: "mai singer hu"
+  },
+  {
+    id: 1,
+    userName: "aashish",
+    comment: "mai singer nhi hu"
+  }, {
+    id: 2,
+    userName: "Ram",
+    comment: "mandir whi banega"
+  }, {
+    id: 3,
+    userName: "sanjh",
+    comment: "ab se daily aaungi"
+  }, {
+    id: 4,
+    userName: "aniket",
+    comment: " sir doubt solve nii ho rhaa"
+  }, {
+    id: 5,
+    userName: "poonam",
+    comment: " mai kaha bolti hu"
+  },
+
+]
+
+
+
+app.get('/', (req, res) => {
+  res.send('this is home file')
 })
 
-app.get('/user',(req,res)=>{
-    let{userName,number}=req.query
-    // console.log(req.query,"rrrr");
-    // res.send("Form submitted!!!")
-    res.send(` ${userName} ${number}`)
+
+app.get('/blog',(req,res)=>{
+  res.render('index',{arr})
+
 })
 
-app.post('/user',(req,res)=>{
-    res.send("Form submitted!!!")
+app.get('/blog/new',(req,res)=>{
+  res.render('new')
 })
 
-app.listen(3001,()=>{
-    console.log("server running on port no 3001");
+app.post('/blog',(req,res)=>{
+  console.log(req.body)
+  let{ userName,comment}=req.body
+  arr.push({userName,comment})
+  res.redirect('/blog')
+})
+
+let port = 3000
+app.listen(port, () => {
+  console.log(`server running on port  ${port}`)
 })
 
 
 
 
-    
+
+

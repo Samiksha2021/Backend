@@ -6,6 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>hello   <%=random%></h2>
+    
+    <% for(let i of arr){ %>
+
+        <h2>    ID:  <%=i.id %></h2>
+    
+        <h3>   UserName: <%= i.userName %></h3>
+        <p>   Comment: <%= i.comment %></p>
+    
+      <%  } %>
+
 </body>
 </html>
